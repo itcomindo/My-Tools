@@ -1,0 +1,309 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800;900&family=Rajdhani:wght@300;500;600;700&family=Roboto+Mono&display=swap");
+
+:root {
+  --mt-color-light-1: #8d7f7f;
+  --mt-color-dark-1: #999;
+  --mt-color-dark-2: #333;
+  --mt-color-dark-3: #222;
+  --mt-color-dark-4: #111;
+  --mt-color-dark-5: #000;
+  --font-primary: "Mulish", sans-serif;
+  --font-display: "Rajdhani", sans-serif;
+  --font-variation-1: "Roboto Mono", monospace;
+}
+
+body {
+  background-color: var(--mt-color-dark-5);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--mt-color-light-1);
+  box-sizing: border-box;
+  line-height: 1.7;
+}
+
+section,
+.section {
+  width: 100%;
+  padding: 0 0.5rem;
+  box-sizing: border-box;
+  height: 100vh;
+  position: relative;
+}
+
+div {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.container {
+  width: 600px;
+  height: 100%;
+  max-width: 100%;
+  padding: 4px;
+  margin: 0 auto;
+  background-color: var(--mt-color-dark-3);
+}
+
+.inner {
+  padding: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+li {
+  box-sizing: border-box;
+}
+
+ul#list-tools {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem 0;
+  position: absolute;
+}
+ul#list-tools li.tool {
+  width: 100%;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.cf-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80%;
+  background: black;
+  border: 1px solid white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* content Formter */
+
+#cf-item-close {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: black;
+  cursor: pointer;
+}
+
+#cf-item-wr {
+  cursor: move;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  background-color: var(--mt-color-dark-5);
+  padding: 2rem 1rem;
+  border-radius: 10px;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0 0.5rem;
+}
+
+.cf-two-col {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+.cf-item {
+  display: flex;
+  flex-direction: column;
+}
+.cf-item li {
+  border-radius: 3px;
+}
+
+.cf-input {
+  border-radius: 10px;
+  padding: 8px;
+  box-sizing: border-box;
+}
+textarea.cf-textarea {
+  border-radius: 10px;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.cf-item ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+.cf-item ul li:hover {
+  color: wheat;
+}
+.cf-item ul li {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 80%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  padding: 3px 0;
+  text-align: center;
+  line-height: 1.2;
+  padding: 8px 0;
+}
+
+li#create-prefix:before {
+  content: "don't forget to add prefix or surfix";
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  font-size: 75%;
+  color: red;
+  letter-spacing: 1px;
+}
+li#create-prefix {
+  grid-column: 1 / span 2;
+  background-color: darkgreen;
+  color: white;
+}
+li#create-surfix {
+  grid-column: 3 / span 2;
+  background-color: darkred;
+  color: white;
+}
+#close-pref-suff {
+  grid-column: 1 / span 4;
+  background-color: darkred;
+  color: white;
+}
+/**
+=========================
+* Redirect
+*=========================
+*/
+
+#redirect {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#redirect-close {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  color: var(--mt-color-dark-5);
+  right: 0;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+#redirect-top {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+#redirect-bot {
+  display: flex;
+  flex-direction: column;
+}
+
+#redirect-bot ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 0.5rem;
+}
+#redirect-bot ul li {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--mt-color-dark-3);
+  cursor: pointer;
+}
+
+/**
+=========================
+* Prism
+* @todo prism
+*=========================
+*/
+
+#cf-prism ul {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+#close-prism {
+  grid-column: 1 / span 4;
+  background-color: darkred;
+  color: white;
+}
+
+/**
+=========================
+* Copy and Reset
+*=========================
+*/
+
+ul#copy-reset {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 1rem;
+}
+ul#copy-reset li {
+  width: 100%;
+}
+
+/* remove contain or not contain */
+#remove-contain-not-contain-wr {
+  display: grid;
+  gap: 1rem;
+}
+.remove-contain-not-contain {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+#remove-contain-not-contain-wr-close {
+  background-color: darkred;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+}
