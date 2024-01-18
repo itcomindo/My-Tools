@@ -18,6 +18,7 @@ function mm_show_content_formater()
 
 
                 <?php echo mmcf_remove_contain_or_not_contain(); ?>
+                <?php echo mmcf_image_convertor_to_webp(); ?>
 
 
 
@@ -47,15 +48,7 @@ function mm_show_content_formater()
 
 
 
-                <div class="cf-item">
-
-                    <!-- prefix surfix -->
-
-                    <div class="cf-item-inner row">
-
-
-                    </div>
-                    <!-- prefix surfix end -->
+                <div id="cf-input-textarea" class="cf-item">
                     <!-- text area for input start -->
                     <label for="cf-input">Input</label>
                     <textarea name="cf-input" id="cf-input" class="cf-textarea" cols="30" rows="5"></textarea>
@@ -136,8 +129,10 @@ function mm_show_content_formater()
                         <li id="create-prism" data-tool="prism-maker">Prism maker</li>
                         <!-- lorem ipsum maker -->
                         <li data-tool="lorem-ipsum-maker">Lorem ipsum maker</li>
+
+
                         <!-- image convertor to webp-->
-                        <li data-tool="image-convertor-to-webp">Image convertor to webp</li>
+                        <li id="create-image-converter" data-tool="image-convertor-to-webp">Image convertor to webp</li>
 
                         <!-- remove duplicate lines -->
                         <li id="create-remove-duplicate-line" data-tool="remove-duplicate-lines">Remove duplicate lines</li>
@@ -201,14 +196,14 @@ function mm_show_content_formater()
 
                 <!-- content formater output -->
 
-                <div class="cf-item">
+                <div id="cf-output-textarea" class="cf-item">
                     <!-- text area for output -->
                     <textarea name="cf-output" id="cf-output" class="cf-textarea" cols="30" rows="5"></textarea>
 
                     <div class="cf-item-inner row">
                         <ul id="copy-reset">
-                            <li class="cf-btn">Copy</li>
-                            <li class="cf-btn">Reset</li>
+                            <li id="copy-result" class="cf-btn">Copy</li>
+                            <li id="reset-result" class="cf-btn">Reset</li>
                         </ul>
                     </div>
 
@@ -271,18 +266,38 @@ function mmcf_remove_contain_or_not_contain()
     <div id="remove-contain-not-contain-wr">
         <!-- contain -->
         <div class="remove-contain-not-contain">
-            <label for="contain">Remove if Contain</label>
+            <label for="contain">Remove Line if Contain</label>
             <input type="text" name="remove-contain" id="remove-contain">
             <div id="create-remove-if-contain" class="cf-btn">Remove if Contain</div>
         </div>
 
         <!-- not contain -->
         <div class="remove-contain-not-contain">
-            <label for="not-contain">Remove if Not Contain</label>
+            <label for="not-contain">Remove Line if Not Contain</label>
             <input type="text" name="remove-not-contain" id="remove-not-contain">
             <div id="create-remove-if-not-contain" class="cf-btn">Remove if Not Contain</div>
         </div>
         <div id="remove-contain-not-contain-wr-close">close</div>
+    </div>
+<?php
+}
+
+
+
+
+
+
+/**
+ * Image Converter to Webp
+ */
+
+function mmcf_image_convertor_to_webp()
+{
+?>
+    <div id="image-converter-wr">
+        <div id="image-dropper" class="image-converter-box"><span>Drag and Drop Here</span></div>
+        <div id="image-result" class="image-converter-box"><span>Result is Here</span></div>
+        <div id="image-converter-close" class="cf-btn">Close</div>
     </div>
 <?php
 }

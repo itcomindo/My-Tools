@@ -603,8 +603,166 @@ window.addEventListener('DOMContentLoaded', (event) => {
                 jQuery('#remove-contain-not-contain-wr').slideUp();
                 jQuery('.cf-items-list').slideDown();
             });
+
+
+
+            //create-remove-if-contain
+            jQuery('#create-remove-if-contain').click(function () {
+                var contain = jQuery('#remove-contain').val();
+                var inputData = jQuery('#cf-input').val();
+                if (inputData.trim().length === 0) {
+                    alert("input kosong");
+                    return;
+                }
+
+                var lines = inputData.split('\n');
+                var modifiedData = lines.filter(function (line) {
+                    return line.indexOf(contain) === -1;
+                }).join('\n');
+
+                jQuery('#cf-output').val(modifiedData);
+                navigator.clipboard.writeText(modifiedData);
+                jQuery('#cf-input').val('');
+                jQuery('#remove-contain').val('');
+            });
+
+            //create-remove-if-not-contain
+            jQuery('#create-remove-if-not-contain').click(function () {
+                var contain = jQuery('#remove-not-contain').val();
+                var inputData = jQuery('#cf-input').val();
+                if (inputData.trim().length === 0) {
+                    alert("input kosong");
+                    return;
+                }
+
+                var lines = inputData.split('\n');
+                var modifiedData = lines.filter(function (line) {
+                    return line.indexOf(contain) !== -1;
+                }).join('\n');
+
+                jQuery('#cf-output').val(modifiedData);
+                navigator.clipboard.writeText(modifiedData);
+                jQuery('#cf-input').val('');
+                jQuery('#remove-not-contain').val('');
+            });
         }
         create_remove_not_contain();
+
+        //copy-result
+        jQuery('#copy-result').click(function () {
+            var output = jQuery('#cf-output').val();
+            if (output.trim().length === 0) {
+                alert("output kosong");
+                return;
+            }
+
+            navigator.clipboard.writeText(output);
+        });
+
+
+        //reset-result
+        jQuery('#reset-result').click(function () {
+            jQuery('#cf-output').val('');
+            jQuery('#cf-input').val('');
+        });
+        //reset result end
+
+
+
+        // image converter start
+        function dragdrop_image_converter() {
+
+
+            jQuery('#image-converter-wr').slideUp();
+            jQuery('#create-image-converter').click(function () {
+                jQuery('#image-converter-wr').slideToggle();
+                jQuery('.cf-items-list').slideToggle();
+                jQuery('#cf-input-textarea').slideToggle();
+                jQuery('#cf-output-textarea').slideToggle();
+            });
+
+
+
+            var dropArea = jQuery('#image-dropper');
+
+            dropArea.on('dragover', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                jQuery(this).addClass('active');
+            });
+
+            dropArea.on('dragleave', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                jQuery(this).removeClass('active');
+            });
+
+            dropArea.on('drop', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                jQuery(this).removeClass('active');
+
+                var files = e.originalEvent.dataTransfer.files;
+                convertAndDisplayImage(files[0]);
+            });
+
+            function convertAndDisplayImage(file) {
+                if (!file.type.match('image/jpeg') && !file.type.match('image/png') && !file.type.match('image/jpg')) {
+                    alert('Only JPG, JPEG, and PNG files are allowed.');
+                    return;
+                }
+
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var image = new Image();
+                    image.src = e.target.result;
+                    image.onload = function () {
+                        var canvas = document.createElement('canvas');
+                        canvas.width = this.naturalWidth;
+                        canvas.height = this.naturalHeight;
+                        var ctx = canvas.getContext('2d');
+                        ctx.drawImage(this, 0, 0);
+                        canvas.toBlob(function (blob) {
+                            var url = URL.createObjectURL(blob);
+
+                            // Menampilkan gambar yang dikonversi di #image-result
+                            var img = jQuery('<img>', { src: url, class: 'converted-image' });
+                            jQuery('#image-result').html(img);
+
+                            createDownloadLink(url, file.name);
+                        }, 'image/webp');
+                    };
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function createDownloadLink(url, fileName) {
+                var downloadLink = jQuery('<a>', {
+                    href: url,
+                    download: fileName.replace(/\.\w+$/, '.webp'),
+                    text: 'Download Image',
+                    class: 'cf-btn download-image'
+                }).appendTo('#image-result');
+
+                // Revoke the object URL after the download link is clicked
+                downloadLink.on('click', function () {
+                    setTimeout(function () {
+                        URL.revokeObjectURL(url);
+                    }, 100);
+                });
+            }
+
+            jQuery('#image-converter-close').click(function () {
+                jQuery('#image-converter-wr').hide();
+                jQuery('.cf-items-list').slideDown();
+                jQuery('#cf-input-textarea').slideDown();
+                jQuery('#cf-output-textarea').slideDown();
+            });
+        }
+
+        dragdrop_image_converter();
+
+        //image-converter end
 
 
 
