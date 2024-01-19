@@ -545,10 +545,44 @@ window.addEventListener('DOMContentLoaded', (event) => {
         create_redirect();
         function create_redirect() {
             jQuery('#redirect').slideUp();
+
+            //open
             jQuery('#create-redirect').click(function () {
                 jQuery('#redirect').slideToggle();
+                jQuery('.cf-items-list').slideToggle();
+                jQuery('#cf-input-textarea').slideToggle();
+                // jQuery('#cf-output').slideToggle();
+            });
+
+            //close redirect-close
+            jQuery('#redirect-close').click(function () {
+                jQuery('#redirect').slideUp();
+                jQuery('.cf-items-list').slideDown();
+                jQuery('#cf-input-textarea').slideDown();
+                jQuery('#cf-output').slideDown();
+            });
+
+            //run redirect
+            jQuery('#run-redirect').click(function () {
+                var fromText = jQuery('#redirect-left .cf-textarea').val();
+                var toText = jQuery('#redirect-right .cf-textarea').val();
+                var fromLines = fromText.split('\n');
+                var toLines = toText.split('\n');
+
+                if (fromLines.length !== toLines.length) {
+                    alert('The number of lines in "Redirect from" and "Redirect to" must be the same.');
+                    return;
+                }
+
+                var redirects = fromLines.map(function (from, index) {
+                    return 'redirect 301 ' + from.trim() + ' ' + toLines[index].trim();
+                }).join('\n');
+
+                jQuery('#cf-output').val(redirects);
+                navigator.clipboard.writeText(redirects);
             });
         }
+
 
 
 
@@ -763,6 +797,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         dragdrop_image_converter();
 
         //image-converter end
+
+
 
 
 

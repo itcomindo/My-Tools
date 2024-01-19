@@ -39,7 +39,6 @@ div {
 
 .container {
   width: 600px;
-  height: 100%;
   max-width: 100%;
   padding: 4px;
   margin: 0 auto;
@@ -89,6 +88,13 @@ ul#list-tools li.tool {
   padding: 6px 0;
 }
 
+#cf-pr .container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* content Formter */
 
 #cf-item-close {
@@ -128,10 +134,20 @@ ul#list-tools li.tool {
   gap: 0 0.5rem;
 }
 
+#cf-output-textarea small {
+  color: white;
+  margin-top: 8px;
+}
+
 .cf-two-col {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
+}
+
+.cf-items-list li a {
+  text-decoration: none;
+  color: var(--mt-color-light-1);
 }
 
 .cf-item {
@@ -214,16 +230,21 @@ li#create-surfix {
 }
 
 #redirect-close {
-  width: 30px;
-  height: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: red;
-  color: var(--mt-color-dark-5);
-  right: 0;
-  margin-left: auto;
+  background-color: darkred;
+  color: white;
+  cursor: pointer;
+}
+#run-redirect {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: darkgreen;
+  color: white;
   cursor: pointer;
 }
 

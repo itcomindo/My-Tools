@@ -35,20 +35,12 @@ require_once 'content-formater.php';
 
 <body>
 
-    <section>
+    <section id="cf-pr">
         <div class="container">
             <div class="inner">
                 <?php
                 mm_show_content_formater();
-                mm_show_list_tools();
                 ?>
-
-
-
-
-
-
-
             </div>
         </div>
     </section>
